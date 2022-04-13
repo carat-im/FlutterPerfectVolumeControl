@@ -60,6 +60,9 @@ public class PerfectVolumeControlPlugin implements FlutterPlugin, MethodCallHand
             case "hideUI":
                 this.hideUI(call, result);
                 break;
+            case "isAnotherAudioPlaying":
+                this.isAnotherAudioPlaying(call, result);
+                break;
             default:
                 result.notImplemented();
                 break;
@@ -100,6 +103,10 @@ public class PerfectVolumeControlPlugin implements FlutterPlugin, MethodCallHand
     public void hideUI(@NonNull MethodCall call, @NonNull Result result) {
         this.hideUI = call.argument("hide");
         result.success(null);
+    }
+
+    private void isAnotherAudioPlaying(@NonNull MethodCall call, @NonNull Result result) {
+        result.success(audioManager.isMusicActive());
     }
 
     /**
